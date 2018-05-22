@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codingapi.fileserver.db.mysql.dao.FileInfoDao">
+    <select id="getFileInfoByKey" resultType="com.codingapi.fileserver.db.mysql.entity.FileInfo">
+        SELECT * FROM file_info WHERE id=#{id}
+    </select>
+
+    <insert id="insertFileInfo" parameterType="com.codingapi.fileserver.db.mysql.entity.FileInfo">
+       INSERT INTO `file_info` (` id`, `orgin_file_name`, `md5_file_str`, `file_type`, `file_size`, `upload_time`, `block_path`, `temp_path`)
+        VALUES(#{id},#{orginFileName},#{md5FileStr},#{fileType},#{fileSize},#{uploadTime},#{blockPath},#{tempPath});
+    </insert>
+
+    <delete id="deleteFileInfoByKey" parameterType="string">
+        DELETE FROM file_info WHERE id=#{id}
+    </delete>
+
+    <update id="updateFileInfo" parameterType="com.codingapi.fileserver.db.mysql.entity.FileInfo">
+        UPDATE file_info SET block_path=#{blockPath},temp_path=#{tempPath},upload_time=NOW() WHERE id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codingapi.fileserver.db.mysql.dao.ImageInfoDao">
+    <select id="getImageInfoByKey" resultType="com.codingapi.fileserver.db.mysql.entity.ImageInfo">
+        SELECT *  FROM image_info WHERE `id`=#{id}
+    </select>
+
+    <insert id="insertImageInfo" parameterType="com.codingapi.fileserver.db.mysql.entity.ImageInfo">
+        INSERT INTO image_info (id,orgin_name,orgin_path,image_size,file_type,is_valid,upload_time)
+        VALUES(#{id},#{orginName},#{orginPath},#{imageSize},#{fileType},#{isValid},#{uploadTime});
+
+    </insert>
+
+    <delete id="deleteImageInfoByKey" parameterType="string">
+        DELETE FROM image_info WHERE id=#{id}
+    </delete>
+</mapper>
